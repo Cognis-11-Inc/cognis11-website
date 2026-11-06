@@ -4,28 +4,38 @@ The Operator requested subtle dark ambient synth, a binaural layer, related effe
 
 ## Composition and implementation
 
-`src/lib/sound.ts` owns the score and its common timing source. `AudioControls.astro` owns visitor interaction and the session preference. `BaseLayout.astro` uses Astro's built-in client router and persists the sound component across navigation.
+`src/lib/score.ts` owns the composition, synthesis, and space. `src/lib/sound.ts` schedules it against the audio clock. `AudioControls.astro` owns visitor interaction and session preference. `BaseLayout.astro` persists it across client navigation. The same composition/synthesis functions run in the offline renderer and signal tests.
 
-| Parameter | Initial composition |
+| Parameter | Current composition |
 | --- | --- |
-| Tonal root | 111 Hz, with a 55.5 Hz sine bass |
+| Tonal root | 111 Hz; sparse bass phrases begin at 55.5 Hz and follow the harmony |
 | Tempo | 66 BPM |
-| Harmony | Four slow minor voicings; 16 beats per voicing |
+| Form | 96 bars, about 5 minutes 49 seconds before repeating; 12 voicings, eight bars each |
+| Bass | Eleven events per form; soft attack, long decay, quiet second harmonic, very small room send |
+| Snare | Fourteen sparse events; filtered noise, tuned body, softened attack, larger reverb send |
 | Stereo carriers | Left 438.5 Hz, right 449.5 Hz; 11 Hz difference |
 | Tone | Filtered sine/triangle voices, low-depth pulse, slow filter movement |
-| Space | Locally generated, deterministic three-second stereo impulse |
+| Space | 38 ms predelay, highpass, allpass diffusion, early reflections, deterministic 7.2-second stereo impulse, lowpass damping |
 | Level | Fixed quiet starting mix; one master gain controls music and effects |
-| Cues | Notes derived from the same root and harmony; soft attack and decay |
-| Visual breath | Eight-beat envelope, sampled from the audible transport |
+| Cues | Notes from the same root/harmony; softer attack, longer decay; discovery cue shares the room |
+| Visual response | Eight-beat breath and a low-depth bass envelope, sampled from the audible transport |
 
 No audio dependency, recording, asset download, or external request is needed. One AudioContext is created lazily inside the visitor's enabling gesture. The master fades in; mute fades out before suspending the context. Repeated enabling reuses the graph. Hidden tabs suspend playback. Session storage is optional; unavailable storage does not block sound.
 
-The first cue tone responds immediately to the gesture. Subsequent tones join the next eighth-note grid. The long pad changes are scheduled ahead on the audio clock. Visual phase is computed from `getOutputTimestamp()` where available, with a base/output-latency fallback. `visualOffsetMs` permits later calibration after listening on real hardware. These measures establish a shared clock, rather than assuming browser animation frames are a sample-accurate audio scheduler.
+The first cue tone responds immediately; subsequent notes join the eighth-note grid. Pad changes and percussion are scheduled ahead on the audio clock. A stalled scheduler skips missed percussion rather than dumping it into the present. Visual phase uses `getOutputTimestamp()` with a latency fallback. `visualOffsetMs` permits physical-device calibration. The light responds to a scheduled bass event at audible output time, rather than when it is queued.
 
 Reduced motion removes the visual breath and pointer movement. It does not automatically choose an audio preference. A full page reload offers activation again; no autoplay bypass is attempted. Stereo headphones reveal the separate carriers. Frequencies are compositional choices, without a claim that the site changes brain states.
 
 ## Verification and listening
 
-The browser tests instrument the real native Web Audio API. They check that no context exists before activation, inspect carrier frequencies/panning and the tempo oscillator, sample a nonzero output signal, and check keyboard mute/resume and a single context across route changes. They also check activation from the intro and reduced-motion behavior.
+The browser tests observe the native Web Audio API: no context before activation, actual carriers/panning/tempo, nonzero signal, keyboard mute/resume, one context across navigation, intro activation, and reduced motion. OfflineAudioContext renders measure the 55.5 Hz bass component, stereo output, headroom, and a decaying snare tail several seconds after the hit. Composition checks verify the long form and sparse events.
+
+For a full listening artifact, using existing development dependencies:
+
+```sh
+CHROMIUM_PATH=/usr/bin/chromium npm run audio:render
+```
+
+This renders the same composition and room to `release/cognis11-ambient-v2-preview.wav`: 24 kHz, 16-bit stereo, about 5 minutes 56 seconds including the tail. It reports peak/RMS and SHA-256. It launches and closes its own headless browser, with no preview server or network. The WAV is an ignored local artifact, excluded from website uploads; the website continues to synthesize audio locally.
 
 These tests establish signal generation and controls in Chromium. They do not certify a subjective mix, perceived loudness on every device, headphone separation on a listener's hardware, or exact audiovisual latency on a physical display. The Operator's listening review remains the next creative decision. The root, harmony, binaural difference, tempo, default level, and timing offset can be adjusted centrally without introducing new visitor controls.

@@ -1,23 +1,23 @@
 # Current hosting
 
-Verified November 5, 2026 (America/Montreal), after the Operator explicitly authorized publication of the polished update.
+Verified November 5, 2026 (America/Toronto), after the Operator explicitly authorized publication and subsequent audio, discovery, and consulting revisions.
 
 - Live: **https://cognis11.xyz/** and **https://www.cognis11.xyz/**
 - Existing Cloudflare Workers Static Assets app: `tiny-scene-763b`.
 - Public website source: **https://github.com/Cognis-11-Inc/cognis11-website**.
-- Deployed version: **`1acd1cda-dc12-400d-9445-36b940f125eb`**.
-- Previous version retained: `204063d8-d7ad-4512-bc02-ac20a012966d`.
-- New bundle: 17 static files, including founder/contact content, public research evidence, social card, and synchronized ambient sound.
+- Deployed version: **`a248790b-473c-48f4-a760-49a13f1fd15f`**.
+- Previous versions retained: `1acd1cda-dc12-400d-9445-36b940f125eb` and `204063d8-d7ad-4512-bc02-ac20a012966d`.
+- Current bundle: 17 static files. This update changed nine assets and reused eight: longer score, sparse bass/snare, diffused reverb, discoveries, and confirmed consulting terms.
 
-HTTPS checks returned **200** for all five main routes on both hostnames. New content and canonicals matched; root-page JS/CSS hashes and social-card bytes matched local output. Unknown routes returned the branded **404** with `noindex`. Desktop Chromium and Pixel 7 emulation exercised the deployed intro, instrument, navigation with persistent sound, and keyboard mute, with zero page exceptions and no horizontal overflow. This focused live check is separate from the full local suite.
+HTTPS checks returned **200** for all five main routes on both hostnames. Discovery content, consulting terms, and canonicals matched; root-page JS/CSS bytes matched local output. Unknown routes returned branded **404** with `noindex`. Desktop Chromium and Pixel 7 emulation exercised the deployed intro, discoveries and signal 11, the scheduled bass-driven visual response, Consulting navigation with persistent audio, pricing/clock wording, and mute. Both used one running audio context across navigation, then suspended it on mute, with zero page exceptions and no horizontal overflow. These focused public checks are separate from the full local suite. Social-card bytes were verified in the preceding delivery and the asset is unchanged.
 
 No DNS, registrar, MX, SPF, or mail-routing change was needed. Contact uses a `mailto:` link; email delivery was not tested. Both domains serve directly with the root domain canonical. No hostname redirect was added.
 
 ## Updating the deployed site
 
-Validate locally, then run `ASTRO_TELEMETRY_DISABLED=1 npm run package`. This restores root-domain output and regenerates the ignored `release/cognis11-cloudflare.zip`, with `index.html` at the archive root. The original ZIP is preserved as `release/cognis11-cloudflare-milestone001.zip`.
+Validate locally, then run `ASTRO_TELEMETRY_DISABLED=1 npm run package`. This restores root-domain output and regenerates the ignored `release/cognis11-cloudflare.zip`, with `index.html` at the archive root. Previous ZIPs are preserved with `milestone001` and `milestone002` suffixes.
 
-The current ZIP has 17 files, 126175 bytes, and SHA-256 `d9589c179164242953d196dc748ec7f75003de6d8d2ec704342fba7ef3916b47`. Repackaging may change ZIP timestamps and its checksum.
+The current ZIP has 17 files, 132655 bytes, and SHA-256 `79fe8a20f9a1e5bf2eeb1c454185ddc92ee1f5291640fd3a3ef4987027ca9719`. Repackaging may change ZIP timestamps and its checksum. The full listening WAV remains a local artifact outside the website upload.
 
 The authenticated CLI upload used an ignored `.local-notes/cloudflare-assets.jsonc`, matching the existing app's routing:
 
@@ -53,7 +53,7 @@ The requested [setup prompt](https://developers.cloudflare.com/agent-setup/promp
 
 The running session published with the authenticated CLI. Restart Codex to load the newly configured MCP tools. No token was added to source or requested in chat. The optional beta `cf` CLI was not installed.
 
-References: [static assets](https://developers.cloudflare.com/workers/static-assets/get-started/), [Wrangler commands](https://developers.cloudflare.com/workers/wrangler/commands/workers/). See [Milestone 002](./MILESTONE-002.md) for current validation and the source tree.
+References: [static assets](https://developers.cloudflare.com/workers/static-assets/get-started/), [Wrangler commands](https://developers.cloudflare.com/workers/wrangler/commands/workers/). See [Milestone 003](./MILESTONE-003.md) for current validation; [Milestone 002](./MILESTONE-002.md) retains the preceding source tree and delivery record.
 
 ## Historical record: initial dashboard connection
 

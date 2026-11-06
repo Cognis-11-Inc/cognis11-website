@@ -18,7 +18,8 @@
     "preview": "astro preview",
     "prepackage": "astro build",
     "package": "python3 scripts/package_site.py",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "audio:render": "node scripts/render_audio_preview.mjs"
   },
   "dependencies": {
     "astro": "7.4.7"

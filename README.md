@@ -1,6 +1,6 @@
 # Cognis 11 Inc. website
 
-The official Astro static website for **Human Operator × Synthetic Intelligence**. Live at **https://cognis11.xyz** on Cloudflare Workers Static Assets. Public website source: **https://github.com/Cognis-11-Inc/cognis11-website**. See [the hosting record](docs/HOSTING.md) and [current delivery record](docs/MILESTONE-002.md) for verification and remaining decisions.
+The official Astro static website for **Human Operator × Synthetic Intelligence**. Live at **https://cognis11.xyz** on Cloudflare Workers Static Assets. Public website source: **https://github.com/Cognis-11-Inc/cognis11-website**. See [the hosting record](docs/HOSTING.md) and [current delivery record](docs/MILESTONE-003.md) for verification and remaining decisions.
 
 The current visual revision follows the Cognis 11 Aesthetic Rule Book: abyss black, reflective obsidian, cyan/electric-blue signal, the existing candidate corporate mark, and depth revealed through interaction. See `docs/DESIGN-REVISION-001.md` for source provenance and the response to the Operator’s review.
 
@@ -70,9 +70,13 @@ All timing logic is inline; the animation needs no network access after the docu
 
 Visitors can choose **Enter with sound** in the intro or **Enable sound** in the persistent sound bar. The single control then becomes **Mute sound / Unmute sound**. A fixed quiet mix fades in; sound starts only after a visitor gesture. A full reload requires a new gesture. Navigation through Astro's client router preserves one audio context and the current preference. Hidden tabs suspend the context.
 
-The original dark ambient score is synthesized locally by Web Audio: a 111 Hz root, minor harmony, slow pads, filtered pulse, and deterministic reverberation. The stereo carriers are 438.5 and 449.5 Hz, separated by 11 Hz. Headphones reveal the stereo layer. These are composition parameters, with no claim about neurological effects.
+The original dark ambient score is synthesized locally by Web Audio: a 111 Hz root, a 96-bar form lasting about 5 minutes 49 seconds, sparse low bass phrases, softened snare texture, slowly evolving harmony, and a diffused 7.2-second reverb. Stereo carriers are 438.5 and 449.5 Hz, separated by 11 Hz. Headphones reveal the stereo layer. These are composition parameters, with no claim about neurological effects.
 
-Music, harmonically related interaction cues, and the instrument's restrained light/breath share a 66 BPM transport. Visual phase uses the audio output timestamp with a latency fallback. Reduced motion disables the visual modulation; the sound button remains available. Parameters and timing compensation live in `src/lib/sound.ts`; see [audio notes](docs/AUDIO.md). No audio files, streaming service, microphone, or network synthesis is used.
+Music, interaction cues, and restrained visual breath/bass responses share a 66 BPM transport. Visual phase uses the audio output timestamp with a latency fallback. Reduced motion disables visual modulation; the sound button remains available. Composition is in `src/lib/score.ts`, playback in `sound.ts`; see [audio notes](docs/AUDIO.md). `CHROMIUM_PATH=/usr/bin/chromium npm run audio:render` produces a local listening WAV using the same synthesis. No streaming service, microphone, or network synthesis is used.
+
+## Discoveries
+
+The optional homepage field changes through deliberate exploration. Nine fragments can be recovered through the field, uncommon/rare draws, research questions, repeated contact, a return visit, and signal 11. A session-local archive remembers fragments; unavailable storage does not prevent exploration. Essential company information remains reachable through normal navigation. See [discovery notes](docs/DISCOVERIES.md) for the authored rules, odds, accessibility, and review instructions.
 
 ## Static hosting preparation
 
@@ -103,4 +107,6 @@ Reference documentation: [Astro installation requirements](https://docs.astro.bu
 
 The founder's approved public identity is **Guillaume Heinerth — Founder and Operator**, reachable at **founder@cognis11.xyz**. Proto-Pineal / UMBRA is named as the proprietary flagship; no private source, mechanisms, results, or research documents belong in this repository. Its public description is deliberately brief.
 
-HOUND and Digital Bee Hive are supporting public experiments with links to their public evidence/design and explicit limits. Their original experiments were not rerun as website tests. Consulting scope and availability remain to be agreed for each inquiry; no pricing, clients, testimonials, credentials, or company history have been invented. No software or brand license is granted by merely making this repository public.
+HOUND and Digital Bee Hive are supporting public experiments with links to their public evidence/design and explicit limits. Their original experiments were not rerun as website tests.
+
+Consulting publishes the Operator's confirmed offer: one free evaluation, then CAD $100/hour, up to three hours per week per client, or a separately defined contract. Paid document review and client-requested interruptions during the agreed work count toward that cap. Total client capacity remains undecided; scope and availability are confirmed individually. No clients, testimonials, credentials, speed guarantees, or company history have been invented.

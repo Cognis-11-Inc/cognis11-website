@@ -1,5 +1,7 @@
 # Milestone 002 — An authored research presence
 
+Historical delivery. [Milestone 003](./MILESTONE-003.md) extends the score/discoveries and publishes the subsequently confirmed consulting offer. Its terms supersede the open pricing decisions below.
+
 November 5, 2026. Follow-up work explicitly authorized by the Operator: publish the founder and contact channel, show bounded public research evidence, keep the flagship private, create a public company GitHub repository, add subtle synchronized sound, and deploy the polished site.
 
 ## Delivered

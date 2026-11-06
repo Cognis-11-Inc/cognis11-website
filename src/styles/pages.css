@@ -102,6 +102,17 @@
 .flagship-copy > .flagship-question { color: var(--text); font-size: 1.3rem; line-height: 1.4; }
 .flagship-copy > .flagship-boundary { font-size: .82rem; }
 .flagship-copy .text-link { font-size: .8rem; border-bottom: 1px solid var(--line); }
+.consulting-offer { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; padding-block: 3rem; margin-bottom: 2rem; border-block: 1px solid var(--line); }
+.offer-intro h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -.035em; }
+.offer-intro > p:not(.eyebrow) { color: var(--muted); font-size: .9rem; max-width: 32ch; }
+.offer-terms > div { padding: 0 0 1.7rem; margin-bottom: 1.7rem; border-bottom: 1px solid var(--line); }
+.offer-terms .eyebrow { color: var(--accent); font-size: .6rem; }
+.offer-terms h3 { font-size: 1.45rem; letter-spacing: -.03em; }
+.offer-terms p:not(.eyebrow) { color: var(--muted); max-width: 55ch; font-size: .95rem; margin-bottom: 0; }
+.offer-terms p + p { margin-top: 1rem; }
+.offer-terms strong { color: var(--text); font-weight: 400; }
+.offer-rate { font-size: clamp(2.5rem, 5vw, 4rem); color: #bdfbff; }
+.offer-unit { color: var(--muted); font-size: 1rem; }
 @media (min-width: 1600px) { .hero-grid { padding-block: 2.5rem 4rem; } }
 @media (max-width: 1100px) {
   .hero-grid { gap: 2rem; }
@@ -121,6 +132,7 @@
   .question-revelation { padding-left: 3.1rem; padding-right: 2rem; }
 }
 @media (max-width: 680px) {
+  .consulting-offer { grid-template-columns: 1fr; gap: 2rem; padding-block: 2rem; }
   .flagship-band { grid-template-columns: 1fr; gap: 1.2rem; padding-block: 2rem; }
   .flagship-band > a { grid-column: 1; justify-self: start; }
   .contact-panel { grid-template-columns: 1fr; gap: 1rem; padding-block: 2rem; }

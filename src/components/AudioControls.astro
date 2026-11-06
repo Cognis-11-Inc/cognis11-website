@@ -32,6 +32,7 @@
     show();
     document.addEventListener('astro:page-load', show);
     document.addEventListener('cognis:enable-sound', () => { if (!enabled) toggle.click(); });
+    document.addEventListener('cognis:discovery', () => sound.cue('discovery'));
     toggle.addEventListener('click', async () => {
       toggle.disabled = true;
       try {
