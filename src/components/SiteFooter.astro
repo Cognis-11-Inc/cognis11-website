@@ -1,0 +1,45 @@
+---
+import Wordmark from './Wordmark.astro';
+import { site, sitePath } from '../lib/site';
+---
+
+<footer class="site-footer">
+  <div class="shell footer-top">
+    <div>
+      <a class="footer-brand" href={sitePath()} aria-label="Cognis 11 Inc. home"><Wordmark full /></a>
+      <p>Human Operator <span aria-hidden="true">×</span><span class="sr-only">and</span> Synthetic Intelligence</p>
+    </div>
+    <div class="footer-location">
+      <span class="eyebrow">Independent research</span>
+      <span class="footer-country">Canada <span aria-hidden="true">↗</span></span>
+      <a class="footer-contact" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <small>© {new Date().getUTCFullYear()} Cognis 11 Inc.</small>
+    <span class="footer-note">Inquiry. Architecture. Continuity.</span>
+    <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--line); margin-top: auto; }
+  .footer-top { display: flex; justify-content: space-between; gap: 2rem; padding-block: 3.5rem; }
+  .footer-brand { text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; }
+  .footer-top p { font-size: .8rem; color: var(--muted); margin: .65rem 0 0; }
+  .footer-top p span[aria-hidden] { color: var(--accent); padding-inline: .2rem; }
+  .footer-location { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: .75rem; font-size: .85rem; }
+  .footer-country { color: var(--muted); }
+  .footer-country span { margin-left: 1rem; color: var(--accent); }
+  .footer-contact { min-height: 44px; display: inline-flex; align-items: center; text-decoration: none; font-size: .78rem; }
+  .footer-bottom { min-height: 75px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .72rem; }
+  .footer-bottom small { font-size: inherit; }
+  .footer-bottom a { display: inline-flex; min-height: 44px; align-items: center; gap: 1rem; text-decoration: none; }
+  .footer-note { font-family: var(--font-mono); font-size: .65rem; }
+  @media (max-width: 680px) {
+    .footer-top { flex-direction: column; padding-block: 2.5rem; }
+    .footer-location { align-items: flex-start; }
+    .footer-note { display: none; }
+    .footer-bottom { flex-wrap: wrap; gap: .5rem; padding-block: .75rem; }
+  }
+</style>

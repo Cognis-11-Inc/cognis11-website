@@ -1,0 +1,19 @@
+---
+import { sitePath } from '../lib/site';
+interface Props { full?: boolean; }
+const { full = false } = Astro.props;
+---
+
+<!-- Viewport crops only; the candidate corporate SVG is unchanged.
+     Its provenance and pending status are recorded in docs. -->
+<span class:list={['wordmark', { 'wordmark-full': full }]}>
+  <svg width={full ? 180 : 196} height={full ? 126 : 48} viewBox={full ? '40 250 1360 950' : '80 885 1240 300'} aria-hidden="true">
+    <image href={sitePath('brand/cognis11-mark-v0.2.svg')} width="1440" height="1440" />
+  </svg>
+</span>
+
+<style>
+  .wordmark { display: inline-flex; align-items: center; }
+  .wordmark svg { overflow: hidden; }
+  @media (max-width: 680px) { .wordmark:not(.wordmark-full) svg { width: 174px; height: 43px; } }
+</style>

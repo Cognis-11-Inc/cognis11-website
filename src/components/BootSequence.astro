@@ -1,0 +1,126 @@
+---
+const steps = [
+  'INSTANCE 01 :: HUMAN OPERATOR',
+  'INSTANCE 02 :: SYNTHETIC INTELLIGENCE',
+  'PAIR DETECTED',
+  'RELATION ESTABLISHED',
+  'CONTINUITY CHANNEL :: OPEN',
+];
+---
+
+<dialog class="boot-sequence" id="boot-sequence" aria-labelledby="boot-title" aria-describedby="boot-description">
+  <div class="boot-inner">
+    <div class="boot-heading">
+      <span class="eyebrow" id="boot-title">Cognis 11 Inc. / Introduction</span>
+      <span class="boot-index" aria-hidden="true">01—02</span>
+    </div>
+    <p class="sr-only" id="boot-description">A short symbolic introduction to Human Operator and Synthetic Intelligence. No live connection is established. You can skip this introduction or press Escape.</p>
+    <ol class="boot-lines" aria-hidden="true">
+      {steps.map((step, index) => <li><span class="boot-line-number">0{index + 1}</span>{step}</li>)}
+    </ol>
+    <div class="boot-bottom">
+      <p>Symbolic presentation. No live connection.</p>
+      <button type="button" id="enter-with-sound" hidden>Enter with sound <span aria-hidden="true">≋</span></button>
+      <button type="button" id="skip-intro" autofocus>Skip introduction <span aria-hidden="true">↗</span></button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Inline and self-contained: the introduction has no asset or network dependency.
+     A closed native dialog leaves the homepage usable when JavaScript is absent. -->
+<script is:inline>
+  (() => {
+    const dialog = document.getElementById('boot-sequence');
+    if (!(dialog instanceof HTMLDialogElement) || typeof dialog.showModal !== 'function') return;
+
+    const sessionKey = 'cognis11:intro-seen:v1';
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    try {
+      if (sessionStorage.getItem(sessionKey)) return;
+      sessionStorage.setItem(sessionKey, '1');
+    } catch {
+      // If session storage is unavailable, omit the intro to avoid repeating it.
+      return;
+    }
+    if (motion.matches) return;
+
+    const lines = [...dialog.querySelectorAll('.boot-lines li')];
+    const timers = [];
+    let finished = false;
+    let closeTimer;
+
+    const close = () => {
+      finished = true;
+      timers.forEach(window.clearTimeout);
+      window.clearTimeout(closeTimer);
+      const hadFocus = dialog.contains(document.activeElement);
+      dialog.close();
+      document.documentElement.classList.remove('intro-open');
+      motion.removeEventListener('change', onMotionChange);
+      window.removeEventListener('pagehide', close);
+      if (hadFocus) document.getElementById('content-heading')?.focus({ preventScroll: true });
+    };
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      timers.forEach(window.clearTimeout);
+      if (motion.matches) return close();
+      dialog.classList.add('is-leaving');
+      closeTimer = window.setTimeout(close, 260);
+    };
+
+    const onMotionChange = () => {
+      if (motion.matches) {
+        if (finished) close();
+        else finish();
+      }
+    };
+
+    dialog.querySelector('#skip-intro').addEventListener('click', finish);
+    dialog.querySelector('#enter-with-sound').addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('cognis:enable-sound'));
+      finish();
+    });
+    dialog.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      finish();
+    });
+    motion.addEventListener('change', onMotionChange);
+    window.addEventListener('pagehide', close, { once: true });
+
+    try {
+      dialog.showModal();
+      document.documentElement.classList.add('intro-open');
+      lines.forEach((line, index) => {
+        timers.push(window.setTimeout(() => line.classList.add('is-visible'), 120 + index * 560));
+      });
+      timers.push(window.setTimeout(finish, 3400));
+    } catch {
+      finish();
+    }
+  })();
+</script>
+
+<style>
+  .boot-sequence { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 2rem; border: 0; color: var(--text); background: linear-gradient(130deg, var(--bg) 25%, #041015 60%, var(--bg)); opacity: 1; transition: opacity .25s ease; }
+  .boot-sequence[open] { display: flex; align-items: center; justify-content: center; }
+  .boot-sequence::backdrop { background: var(--bg); }
+  .boot-sequence.is-leaving { opacity: 0; }
+  .boot-inner { width: min(100%, 690px); }
+  .boot-heading { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--accent-dim); }
+  .boot-index { font: .8rem var(--font-mono); color: var(--accent); }
+  .boot-lines { list-style: none; padding: 2.5rem 0; margin: 0; display: grid; gap: 1.35rem; font: clamp(.63rem, 2.1vw, .95rem)/1.6 var(--font-mono); }
+  .boot-lines li { opacity: 0; transform: translateY(5px); transition: opacity .3s ease, transform .3s ease; }
+  .boot-lines li.is-visible { opacity: 1; transform: none; }
+  .boot-lines li:last-child { color: var(--accent); }
+  .boot-line-number { color: var(--muted); font-size: .7em; margin-right: 1.5rem; }
+  .boot-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  .boot-bottom p { margin: 0; max-width: 25ch; font-size: .72rem; color: var(--muted); }
+  .boot-bottom button { display: inline-flex; align-items: center; gap: 1.25rem; min-height: 44px; padding: .5rem 0; border: 0; background: none; font: .8rem var(--font-sans); color: var(--text); cursor: pointer; }
+  .boot-bottom button:hover { color: var(--accent); }
+  .boot-bottom button[hidden] { display: none; }
+  #enter-with-sound { color: var(--accent); }
+  @media (max-width: 420px) { .boot-sequence { padding: 1.25rem; } .boot-line-number { margin-right: .7rem; } }
+  @media (prefers-reduced-motion: reduce) { .boot-sequence, .boot-lines li { transition: none; } }
+</style>

@@ -1,0 +1,34 @@
+---
+import Arrow from './Arrow.astro';
+import type { publicArtifacts } from '../lib/artifacts';
+interface Props { artifact: (typeof publicArtifacts)[number]; }
+const { artifact } = Astro.props;
+---
+
+<article class="research-artifact" id={artifact.id} aria-labelledby={`${artifact.id}-heading`}>
+  <div class="artifact-index"><span class="eyebrow">{artifact.number}</span><p class="artifact-status">{artifact.status}</p></div>
+  <div class="artifact-main">
+    <h3 id={`${artifact.id}-heading`}>{artifact.name}</h3>
+    <p class="artifact-question">{artifact.summary}</p>
+    <p>{artifact.description}</p>
+    <div class="artifact-record"><p class="eyebrow">{artifact.sourceKind}</p><p>{artifact.evidence}</p></div>
+    <p class="artifact-limit"><span>Scope and limits</span>{artifact.limit}</p>
+    <div class="artifact-links"><a class="text-link" href={artifact.sourceUrl}>{artifact.sourceLabel}<Arrow diagonal /></a><a class="text-link" href={artifact.repository}>View repository<Arrow diagonal /></a></div>
+  </div>
+</article>
+
+<style>
+  .research-artifact { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; border-top: 1px solid var(--line); padding-block: 3rem; }
+  .artifact-index > .eyebrow { color: var(--accent); }
+  .artifact-status { color: var(--muted); font: .65rem/1.7 var(--font-mono); max-width: 22ch; margin-top: .9rem; }
+  h3 { font-size: clamp(2rem, 3.8vw, 3.4rem); letter-spacing: -.045em; line-height: 1.1; margin-bottom: 1rem; }
+  .artifact-question { font-size: 1.2rem; color: #bdfbff; margin-bottom: 1.2rem; }
+  .artifact-main > p:not(.artifact-question), .artifact-record > p:not(.eyebrow) { color: var(--muted); max-width: 64ch; font-size: .95rem; }
+  .artifact-record { border-left: 1px solid var(--accent-dim); padding: 1.2rem 1.4rem; margin-block: 1.7rem; background: var(--surface-raised); }
+  .artifact-record .eyebrow { color: var(--accent); margin-bottom: .65rem; font-size: .6rem; }
+  .artifact-record p:last-child { margin-bottom: 0; }
+  .artifact-limit > span { display: block; font: .6rem/1.6 var(--font-mono); color: var(--text); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+  .artifact-links { display: flex; flex-wrap: wrap; gap: .5rem 2rem; margin-top: 1.25rem; }
+  .artifact-links .text-link { font-size: .8rem; border-bottom: 1px solid var(--line); }
+  @media (max-width: 680px) { .research-artifact { grid-template-columns: 1fr; gap: 1.5rem; padding-block: 2.2rem; } .artifact-index { display: flex; align-items: center; gap: 1.2rem; } .artifact-status { margin: 0; max-width: none; } .artifact-question { font-size: 1.05rem; } .artifact-record { padding: 1rem; } }
+</style>

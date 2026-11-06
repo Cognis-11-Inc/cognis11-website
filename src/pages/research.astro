@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import ResearchArtifact from '../components/ResearchArtifact.astro';
+import Arrow from '../components/Arrow.astro';
+import { researchAreas } from '../lib/research';
+import { publicArtifacts, evidenceReviewed } from '../lib/artifacts';
+import { sitePath } from '../lib/site';
+---
+
+<BaseLayout title="Research" description="Explore Cognis 11 Inc.’s research directions: synthetic intelligence, computational architectures, continuity, and human–synthetic dynamics.">
+  <PageHeading number="01" label="Research" title="Questions worth pursuing." description="Proto-Pineal / UMBRA is the flagship research programme of Cognis 11. Selected public experiments offer another way into the questions behind the company." />
+  <div class="shell page-body">
+    <section class="flagship-section" id="flagship" aria-labelledby="flagship-heading">
+      <div><p class="eyebrow">Flagship · Proprietary research</p><h2 id="flagship-heading">Proto-Pineal<br /><span>/ UMBRA</span></h2></div>
+      <div class="flagship-copy"><p class="flagship-question">What persists across encounters?</p><p>The flagship of Cognis 11 explores continuity and the relation between a human operator and synthetic intelligence.</p><p class="flagship-boundary">Proprietary research. Technical material is not publicly available.</p><a class="text-link" href={sitePath('contact/')}>Contact the founder <Arrow diagonal /></a></div>
+    </section>
+    <section class="artifact-section" id="public-work" aria-labelledby="public-work-heading">
+      <div class="research-section-heading"><p class="eyebrow">Supporting public experiments</p><h2 id="public-work-heading">Work you can inspect.</h2><p>Separate from the proprietary flagship, these public projects offer a documented network experiment and an experimental design. Each carries its own scope.</p></div>
+      {publicArtifacts.map((artifact) => <ResearchArtifact artifact={artifact} />)}
+      <p class="evidence-date">Sources reviewed <time datetime={evidenceReviewed}>November 5, 2026</time>. Descriptions reflect the cited project records.</p>
+    </section>
+    <div class="research-section-heading"><p class="eyebrow">Research directions</p><h2>Four connected questions.</h2></div>
+    <div class="research-topics">
+      {researchAreas.map((area) => (
+        <section class="research-topic" id={area.id} aria-labelledby={`${area.id}-heading`}>
+          <span class="eyebrow research-number">{area.number}</span>
+          <div><h2 id={`${area.id}-heading`}>{area.title}</h2><p>{area.question}</p></div>
+        </section>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

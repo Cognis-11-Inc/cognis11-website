@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1440" width="1440" height="1440" role="img" aria-labelledby="title desc">
+  <title id="title">Cognis 11 Inc. full logo</title>
+  <desc id="desc">Candidate Cognis 11 Inc. vector identity, version 0.2. Custom path geometry; no font or raster dependency.</desc>
+  <metadata>
+    status: candidate vector reconstruction; Operator visual acceptance pending
+    version: 0.2
+    revision: 1
+    date: 2026-08-15
+    visual-anchor: exec-3ad6bbc1-1236-4c4f-b5dd-d1f8fe456f3c.png
+    geometry-authority: shared deterministic path definition
+  </metadata>
+
+  <defs>
+    <linearGradient id="signal-gradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0D55D9"/>
+      <stop offset="0.22" stop-color="#00C8FF"/>
+      <stop offset="0.52" stop-color="#22F5FF"/>
+      <stop offset="0.78" stop-color="#00B8FF"/>
+      <stop offset="1" stop-color="#123EAC"/>
+    </linearGradient>
+    <linearGradient id="inscription-gradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#BDFBFF"/>
+      <stop offset="0.38" stop-color="#26DFFF"/>
+      <stop offset="1" stop-color="#0873DF"/>
+    </linearGradient>
+    <radialGradient id="abyss" cx="50%" cy="45%" r="70%">
+      <stop offset="0" stop-color="#041015"/>
+      <stop offset="0.58" stop-color="#010507"/>
+      <stop offset="1" stop-color="#000101"/>
+    </radialGradient>
+    <filter id="wave-glow" x="-30%" y="-45%" width="160%" height="190%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="16" result="wide"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4.5" result="near"/>
+      <feMerge><feMergeNode in="wide"/><feMergeNode in="near"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="inscription-glow" x="-20%" y="-35%" width="140%" height="170%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="5" result="soft"/>
+      <feMerge><feMergeNode in="soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <g id="c11-waveform" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 591,606 C 620,560 640,505 680,505 C 750,505 775,690 850,715 C 930,740 960,650 1035,622 C 1100,590 1160,665 1210,680 C 1260,695 1300,645 1359,678" stroke="#08275E" stroke-width="3" opacity="0.52"/>
+    <path d="M 77,685 C 120,686 145,635 185,635 C 230,635 247,670 281,660 C 326,648 350,650 381,676 C 421,715 431,800 481,800 C 546,800 601,545 680,505 C 760,465 781,705 850,716 C 931,730 970,646 1035,622 C 1120,590 1190,705 1270,638 C 1310,612 1331,665 1371,677" stroke="url(#signal-gradient)" stroke-width="4.2" opacity="0.86"/>
+    <path d="M 112,679 C 145,678 158,644 190,636 C 228,628 246,663 277,657 C 326,648 346,557 390,519 C 440,476 463,654 500,704 C 535,751 564,677 591,606 C 632,497 650,319 710,311 C 785,301 801,472 850,591 C 880,663 882,755 908,758 C 947,763 956,532 1005,500 C 1060,464 1081,580 1131,627 C 1181,675 1220,660 1265,642 C 1301,628 1325,660 1359,678" stroke="#00DFFB" stroke-width="22" opacity="0.34" filter="url(#wave-glow)"/>
+    <path d="M 112,679 C 145,678 158,644 190,636 C 228,628 246,663 277,657 C 326,648 346,557 390,519 C 440,476 463,654 500,704 C 535,751 564,677 591,606 C 632,497 650,319 710,311 C 785,301 801,472 850,591 C 880,663 882,755 908,758 C 947,763 956,532 1005,500 C 1060,464 1081,580 1131,627 C 1181,675 1220,660 1265,642 C 1301,628 1325,660 1359,678" stroke="url(#signal-gradient)" stroke-width="13" filter="url(#wave-glow)"/>
+    <path d="M 112,679 C 145,678 158,644 190,636 C 228,628 246,663 277,657 C 326,648 346,557 390,519 C 440,476 463,654 500,704 C 535,751 564,677 591,606 C 632,497 650,319 710,311 C 785,301 801,472 850,591 C 880,663 882,755 908,758 C 947,763 956,532 1005,500 C 1060,464 1081,580 1131,627 C 1181,675 1220,660 1265,642 C 1301,628 1325,660 1359,678" stroke="#B9FFFF" stroke-width="2.2" opacity="0.72"/>
+  </g>
+
+  <g id="c11-wordmark" transform="translate(0,100)" fill="none" stroke="url(#inscription-gradient)" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" color="#2ADFFF" filter="url(#inscription-glow)">
+
+    <path id="glyph-c" d="M 229,810 H 184 C 143,810 121,834 121,870 C 121,906 143,930 184,930 H 229"/>
+    <path id="glyph-o" d="M 340,810 C 300,810 278,833 278,870 C 278,907 300,930 340,930 C 380,930 402,907 402,870 C 402,833 380,810 340,810 Z"/>
+    <circle id="glyph-o-core" cx="340" cy="870" r="6.5" fill="currentColor" stroke="none"/>
+    <path id="glyph-g" d="M 579,810 H 526 C 484,810 462,834 462,870 C 462,906 484,930 526,930 H 584 V 872 H 537 M 563,872 H 584"/>
+    <path id="glyph-n" d="M 672,930 V 810 L 789,930 V 810"/>
+    <path id="glyph-i" d="M 869,810 H 877 V 930 H 869 Z" fill="currentColor" stroke="none"/>
+    <path id="glyph-s" d="M 1068,810 H 1007 C 980,810 966,822 966,843 C 966,862 980,870 1007,870 H 1032 C 1061,870 1076,880 1076,900 C 1076,920 1061,930 1032,930 H 965"/>
+    <path id="glyph-one-a" d="M 1170,930 V 817 L 1154,831"/>
+    <path id="glyph-one-b" d="M 1280,930 V 817 L 1264,831"/>
+
+  </g>
+  <g id="c11-inc" transform="translate(0,100)" fill="none" stroke="url(#inscription-gradient)" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter" color="#2ADFFF" filter="url(#inscription-glow)">
+
+    <path id="inc-i" d="M 610,1008 H 616 V 1050 H 610 Z" fill="currentColor" stroke="none"/>
+    <path id="inc-n" d="M 661,1050 V 1008 L 711,1050 V 1008"/>
+    <path id="inc-c" d="M 792,1008 H 774 C 754,1008 745,1016 745,1029 C 745,1042 754,1050 774,1050 H 792"/>
+    <circle id="inc-period" cx="827" cy="1050" r="3.8" fill="currentColor" stroke="none"/>
+
+  </g>
+</svg>

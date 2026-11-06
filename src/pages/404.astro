@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import Arrow from '../components/Arrow.astro';
+import { sitePath } from '../lib/site';
+---
+
+<BaseLayout title="Page not found" noindex>
+  <PageHeading number="404" label="Page not found" title="Outside the current field." description="The page you’re looking for could not be found." />
+  <div class="shell page-body"><a class="button" href={sitePath()}>Return to the homepage <Arrow /></a></div>
+</BaseLayout>

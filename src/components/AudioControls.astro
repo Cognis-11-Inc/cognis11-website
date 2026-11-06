@@ -1,0 +1,82 @@
+<aside class="audio-dock" aria-label="Site sound" transition:persist="cognis11-sound" hidden>
+  <div class="shell audio-inner">
+    <div class="audio-start"><button type="button" class="sound-toggle" aria-pressed="false"><span class="sound-symbol" aria-hidden="true">≋</span><span data-sound-label>Enable sound</span></button><span class="sound-description" role="status">Dark ambient synth</span></div>
+  </div>
+</aside>
+
+<script>
+  import { SiteSound, sonicTheme } from '../lib/sound';
+  const dock = document.querySelector<HTMLElement>('.audio-dock');
+  const toggle = dock?.querySelector<HTMLButtonElement>('.sound-toggle');
+  const label = dock?.querySelector<HTMLElement>('[data-sound-label]');
+  const status = dock?.querySelector<HTMLElement>('[role="status"]');
+  if (dock && toggle && label && status && typeof AudioContext !== 'undefined') {
+    let enabled = false;
+    let hasPlayed = false;
+    try {
+      const value = JSON.parse(sessionStorage.getItem('cognis11:sound:v1') || 'null');
+      hasPlayed = value?.enabled === true;
+    } catch { /* Storage is optional; audio still works. */ }
+    const sound = new SiteSound();
+    if (hasPlayed) label.textContent = 'Unmute sound';
+    const store = () => {
+      try { sessionStorage.setItem('cognis11:sound:v1', JSON.stringify({ enabled })); } catch { /* No persistence required. */ }
+    };
+    const show = () => {
+      dock.hidden = false;
+      document.documentElement.dataset.audioControls = 'ready';
+      document.documentElement.style.setProperty('--sonic-beat', `${60 / sonicTheme.bpm}s`);
+      const introSound = document.getElementById('enter-with-sound');
+      if (introSound) introSound.hidden = false;
+    };
+    show();
+    document.addEventListener('astro:page-load', show);
+    document.addEventListener('cognis:enable-sound', () => { if (!enabled) toggle.click(); });
+    toggle.addEventListener('click', async () => {
+      toggle.disabled = true;
+      try {
+        if (enabled) { sound.stop(); enabled = false; }
+        else { await sound.start(); enabled = true; hasPlayed = true; sound.cue('enter'); }
+        toggle.setAttribute('aria-pressed', String(enabled));
+        label.textContent = enabled ? 'Mute sound' : hasPlayed ? 'Unmute sound' : 'Enable sound';
+        status.textContent = 'Dark ambient synth';
+        store();
+      } catch {
+        enabled = false;
+        sound.stop();
+        toggle.setAttribute('aria-pressed', 'false');
+        label.textContent = 'Try sound again';
+        status.textContent = 'Your browser could not start audio.';
+      } finally { toggle.disabled = false; }
+    });
+    document.addEventListener('visibilitychange', () => {
+      void sound.visibility(document.hidden).catch(() => {
+        sound.stop();
+        enabled = false;
+        toggle.setAttribute('aria-pressed', 'false');
+        label.textContent = 'Unmute sound';
+        store();
+      });
+    });
+    document.addEventListener('toggle', (event) => {
+      const target = event.target;
+      if (target instanceof HTMLDetailsElement && (target.classList.contains('instrument') || target.classList.contains('research-question'))) sound.cue(target.open ? 'contact' : 'close');
+    }, true);
+    document.addEventListener('click', (event) => {
+      const target = event.target instanceof Element ? event.target.closest('a') : null;
+      if (target && new URL(target.href, location.href).origin === location.origin) sound.cue('navigate');
+    });
+  }
+</script>
+
+<style>
+  .audio-dock[hidden] { display: none; }
+  .audio-dock { position: fixed; bottom: 0; left: 0; right: 0; z-index: 30; background: #010507f5; border-top: 1px solid var(--line); }
+  .audio-inner { display: flex; justify-content: space-between; align-items: center; min-height: 64px; gap: 1rem; }
+  .audio-start { display: flex; align-items: center; gap: 1.5rem; }
+  .sound-toggle { display: inline-flex; align-items: center; min-height: 44px; gap: .65rem; border: 0; padding: .5rem 0; background: transparent; color: var(--text); font-size: .78rem; cursor: pointer; }
+  .sound-toggle[aria-pressed='true'] { color: var(--accent); }
+  .sound-symbol { color: var(--accent); font-size: 1.4rem; line-height: 1; }
+  .sound-description { color: var(--muted); font: .58rem/1.6 var(--font-mono); }
+  @media (max-width: 680px) { .audio-inner { min-height: 60px; } .audio-start { gap: 1rem; } }
+</style>

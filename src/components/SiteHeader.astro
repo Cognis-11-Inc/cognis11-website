@@ -1,0 +1,39 @@
+---
+import Wordmark from './Wordmark.astro';
+import { navigation, sitePath } from '../lib/site';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '');
+---
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand-link" href={sitePath()} aria-label="Cognis 11 Inc. home"><Wordmark /></a>
+    <nav aria-label="Primary">
+      <ul class="nav-list">
+        {navigation.map(({ label, path }) => (
+          <li>
+            <a href={sitePath(path)} aria-current={currentPath === sitePath(path).replace(/\/$/, '') ? 'page' : undefined}>
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header { border-bottom: 1px solid var(--line); background: var(--bg); }
+  .header-inner { min-height: 108px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .brand-link { display: inline-flex; text-decoration: none; padding-block: .5rem; }
+  .nav-list { display: flex; align-items: center; gap: clamp(.6rem, 2vw, 2rem); list-style: none; padding: 0; margin: 0; }
+  .nav-list a { position: relative; display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: .82rem; color: var(--muted); transition: color .2s ease; }
+  .nav-list a:hover, .nav-list a[aria-current='page'] { color: var(--accent); }
+  .nav-list a[aria-current='page']::after { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); position: absolute; bottom: 0; left: calc(50% - 2px); }
+  @media (max-width: 680px) {
+    .header-inner { padding-top: 1rem; padding-bottom: .65rem; min-height: auto; align-items: flex-start; flex-direction: column; gap: .65rem; }
+    nav { width: 100%; }
+    .nav-list { justify-content: space-between; gap: .3rem; }
+    .nav-list a { font-size: .78rem; padding-inline: .2rem; }
+  }
+</style>

@@ -1,0 +1,61 @@
+@import './pages.css';
+
+:root {
+  color-scheme: dark;
+  /* House colour roles from the Cognis 11 Aesthetic Rule Book.
+     Website values follow the v0.2 mark; production calibration is open. */
+  --bg: #000101;
+  --surface: #010507;
+  --surface-raised: #041015;
+  --text: #eef8fa;
+  --muted: #9aaeb7;
+  --accent: #22f5ff;
+  --accent-dim: #00b8ff;
+  --blue: #0d55d9;
+  --deep-blue: #08275e;
+  --line: #1a2b34;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  font-weight: 400;
+  background: var(--bg);
+  color: var(--text);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+html.intro-open { overflow: hidden; }
+body { margin: 0; min-width: 320px; min-height: 100svh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+html[data-audio-controls='ready'] body { padding-bottom: 64px; }
+main { flex: 1; }
+a { color: inherit; text-underline-offset: .3em; }
+a:hover { color: var(--accent); }
+button { font: inherit; }
+svg { display: block; max-width: 100%; }
+::selection { background: var(--accent); color: var(--bg); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 1px; }
+[tabindex='-1']:focus:not(:focus-visible) { outline: none; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3 { font-weight: 400; }
+p { line-height: 1.75; }
+.shell { width: min(1280px, calc(100% - 112px)); margin-inline: auto; }
+.eyebrow { font: .65rem/1.6 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.section-label { display: flex; align-items: center; gap: 1.2rem; }
+.section-label .section-number { color: var(--accent); }
+.text-link { display: inline-flex; align-items: center; justify-content: space-between; min-height: 44px; gap: 1.5rem; text-decoration: none; font-size: .85rem; }
+.text-link:hover { color: var(--accent); }
+.button { display: inline-flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 52px; padding: .8rem 1.3rem; font-size: .82rem; text-decoration: none; border: 1px solid var(--accent); background: var(--accent); color: var(--bg); transition: background .2s ease, border-color .2s ease; }
+.button:hover { background: #b9ffff; color: var(--bg); border-color: #b9ffff; }
+.button-secondary { background: transparent; color: var(--text); border-color: var(--line); }
+.button-secondary:hover { background: var(--surface); color: var(--accent); border-color: var(--muted); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; top: .75rem; left: 1rem; z-index: 20; transform: translateY(-200%); padding: .8rem 1.2rem; background: var(--accent); color: var(--bg); }
+.skip-link:focus { transform: none; color: var(--bg); }
+@media (min-width: 1600px) { .shell { width: min(1360px, calc(100% - 144px)); } }
+@media (max-width: 1000px) { .shell { width: calc(100% - 64px); } }
+@media (max-width: 680px) { .shell { width: calc(100% - 40px); } html[data-audio-controls='ready'] body { padding-bottom: 60px; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

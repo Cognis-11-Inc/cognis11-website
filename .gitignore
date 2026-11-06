@@ -1,0 +1,17 @@
+node_modules/
+dist/
+release/
+.astro/
+test-results/
+playwright-report/
+.env
+.env.*
+!.env.example
+.DS_Store
+.directory
+.local-notes/
+.wrangler/
+.dev.vars
+.dev.vars.*
+__pycache__/
+*.pyc

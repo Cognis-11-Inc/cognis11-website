@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import Arrow from '../components/Arrow.astro';
+import { sitePath } from '../lib/site';
+---
+
+<BaseLayout title="Consulting" description="The consulting section of Cognis 11 Inc., a Canadian research company exploring synthetic intelligence and computational architectures.">
+  <PageHeading number="02" label="Consulting" title="Begin with the question." description="For consulting inquiries related to synthetic intelligence and computational architectures, start a conversation with the founder." />
+  <div class="shell page-body">
+    <section class="editorial-block" aria-labelledby="consulting-heading">
+      <p class="eyebrow">Consulting inquiries</p>
+      <div><h2 id="consulting-heading">Bring a specific problem.</h2><p>Begin with a problem that deserves close examination, a mechanism you want to understand, or an assumption you are prepared to question.</p><p>The company’s consulting scope is being defined. If you have a technical question or a possible engagement in mind, write with a short description of the problem, the context, and what you need to understand.</p><p>Scope and availability need to be confirmed before an engagement. Service packages and pricing are not currently published.</p><a class="button button-secondary" href={sitePath('contact/')}>Discuss an inquiry <Arrow diagonal /></a></div>
+    </section>
+    <a class="text-link" href={sitePath('research/')}>Explore the research direction <Arrow /></a>
+  </div>
+</BaseLayout>

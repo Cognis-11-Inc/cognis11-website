@@ -1,0 +1,19 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = 'This section is taking shape.' } = Astro.props;
+---
+
+<aside class="content-notice" aria-label="Content status">
+  <span class="eyebrow">In preparation</span>
+  <div><h2>{title}</h2><p><slot /></p></div>
+</aside>
+
+<style>
+  .content-notice { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; border-top: 1px solid var(--line); padding: 2.5rem 0; }
+  .content-notice > span { padding-top: .35rem; }
+  h2 { font-size: 1.35rem; letter-spacing: -.02em; margin-bottom: 1rem; }
+  p { margin: 0; max-width: 62ch; color: var(--muted); font-size: .95rem; }
+  @media (max-width: 680px) { .content-notice { grid-template-columns: 1fr; gap: 1rem; } }
+</style>
