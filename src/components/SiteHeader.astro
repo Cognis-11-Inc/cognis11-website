@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
       <ul class="nav-list">
         {navigation.map(({ label, path }) => (
           <li>
-            <a href={sitePath(path)} aria-current={currentPath === sitePath(path).replace(/\/$/, '') ? 'page' : undefined}>
+            <a href={sitePath(path)} aria-current={currentPath === sitePath(path).replace(/\/$/, '') ? 'page' : path && currentPath.startsWith(sitePath(path)) ? 'location' : undefined}>
               {label}
             </a>
           </li>
@@ -28,8 +28,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
   .brand-link { display: inline-flex; text-decoration: none; padding-block: .5rem; }
   .nav-list { display: flex; align-items: center; gap: clamp(.6rem, 2vw, 2rem); list-style: none; padding: 0; margin: 0; }
   .nav-list a { position: relative; display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: .82rem; color: var(--muted); transition: color .2s ease; }
-  .nav-list a:hover, .nav-list a[aria-current='page'] { color: var(--accent); }
-  .nav-list a[aria-current='page']::after { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); position: absolute; bottom: 0; left: calc(50% - 2px); }
+  .nav-list a:hover, .nav-list a[aria-current] { color: var(--accent); }
+  .nav-list a[aria-current]::after { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); position: absolute; bottom: 0; left: calc(50% - 2px); }
   @media (max-width: 680px) {
     .header-inner { padding-top: 1rem; padding-bottom: .65rem; min-height: auto; align-items: flex-start; flex-direction: column; gap: .65rem; }
     nav { width: 100%; }

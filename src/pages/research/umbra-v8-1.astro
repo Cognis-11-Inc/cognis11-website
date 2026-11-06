@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeading from '../../components/PageHeading.astro';
+import Arrow from '../../components/Arrow.astro';
+import { sitePath } from '../../lib/site';
+import { researcher, manuscriptFile } from '../../lib/publications';
+---
+<BaseLayout title="Read Proto-Pineal v8.1" description="Read Guillaume Heinerth’s published Proto-Pineal v8.1 UMBRA manuscript, with the original PDF, Zenodo record, DOI, and ORCID attribution.">
+  <PageHeading number="R.81" label="Published manuscript · September 5, 2026" title="Proto-Pineal v8.1." description="UMBRA: The Governed Live Prototype. A claim-harmonised technical manuscript by Guillaume Heinerth, Cognis 11 Inc." />
+  <div class="shell page-body">
+    <div class="manuscript-tools"><a class="button" href={sitePath(manuscriptFile)}>Open the full PDF<Arrow diagonal /></a><a class="text-link" href={sitePath(manuscriptFile)} download="Proto-Pineal-v8.1.pdf">Download the manuscript<Arrow /></a><a class="text-link" href={researcher.zenodoUrl}>Original Zenodo record<Arrow diagonal /></a></div>
+    <p class="manuscript-provenance">Published preprint · DOI <a href="https://doi.org/10.5281/zenodo.22313960">10.5281/zenodo.22313960</a> · <a href={researcher.orcidUrl}>ORCID {researcher.orcid}</a></p>
+    <iframe class="manuscript-viewer" src={sitePath(manuscriptFile)} title="Full published Proto-Pineal v8.1 manuscript PDF" loading="lazy"></iframe>
+    <p class="manuscript-note">Use the full-PDF link or download if your browser does not display the document here. This is the original PDF from the public Zenodo record, reproduced with the author’s authorization. The manuscript describes its dated research snapshot; the current engine and implementation remain proprietary.</p>
+    <a class="text-link" href={`${sitePath('research/')}#publications`}>Return to the publication record<Arrow /></a>
+  </div>
+</BaseLayout>
+<style>
+  .manuscript-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+  .manuscript-tools .text-link { font-size: .8rem; }
+  .manuscript-provenance { color: var(--muted); font: .65rem/2 var(--font-mono); margin-block: 1.5rem; overflow-wrap: anywhere; }
+  .manuscript-viewer { display: block; width: 100%; height: 82svh; min-height: 520px; border: 1px solid var(--line); background: var(--surface-raised); }
+  .manuscript-note { color: var(--muted); font-size: .82rem; max-width: 88ch; margin-block: 1.5rem; }
+  @media(max-width:680px) { .manuscript-tools { gap: .7rem 1.3rem; } .manuscript-viewer { height: 70svh; min-height: 400px; } }
+</style>

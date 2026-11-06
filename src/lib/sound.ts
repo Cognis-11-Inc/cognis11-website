@@ -59,7 +59,7 @@ export class SiteSound {
     this.enabled = true;
     const context = this.context!;
     this.master!.gain.cancelScheduledValues(context.currentTime);
-    this.master!.gain.setTargetAtTime(sonicTheme.defaultVolume * .45, context.currentTime, 1.4);
+    this.master!.gain.setTargetAtTime(sonicTheme.defaultVolume * sonicTheme.masterGainScale, context.currentTime, 1.4);
     window.clearInterval(this.scheduler);
     this.schedule(); this.scheduler = window.setInterval(this.schedule, 200);
     this.draw();

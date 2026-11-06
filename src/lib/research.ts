@@ -7,6 +7,9 @@ export const researchAreas = [
     invitation: 'Can intelligence take another form?',
     summary: 'The forms, possibilities, and limits of synthetic intelligence.',
     question: 'How can synthetic intelligence be understood on its own terms?',
+    perspective: 'Human resemblance is one way to describe a synthetic system. Cognis 11 asks what becomes visible when the inquiry begins with the system’s organisation, behaviour, and constraints instead.',
+    context: 'A convincing answer, a useful action, and an explanation of the mechanism are different things to investigate. This direction keeps those questions open long enough to examine each one.',
+    inquiries: ['Which capacities can be described without borrowing a human identity?', 'What distinguishes a useful interpretation from a testable explanation?', 'Which limits become visible when the setting or task changes?'],
   },
   {
     id: 'computational-architectures',
@@ -15,6 +18,9 @@ export const researchAreas = [
     invitation: 'What changes when the structure changes?',
     summary: 'The structures through which intelligence is organized and expressed.',
     question: 'How does computational structure shape the possibilities of an intelligent system?',
+    perspective: 'Architecture is a question about relationships: what can influence what, where state lives, and which boundaries a change must cross. The same apparent task can invite very different ways of organising a system.',
+    context: 'The interest here is in understanding the consequences of those choices. An architecture should give an investigator something to reason about: dependencies, constraints, transitions, and a way to inspect what happened.',
+    inquiries: ['Where does a system retain state, and who can change it?', 'What happens when one component is removed or constrained?', 'Which parts of an explanation can be traced to an observable mechanism?'],
   },
   {
     id: 'continuity',
@@ -23,6 +29,9 @@ export const researchAreas = [
     invitation: 'What remains when the moment is gone?',
     summary: 'Persistence, context, and change across time and interaction.',
     question: 'What does it mean for a synthetic system to maintain continuity over time?',
+    perspective: 'An encounter ends; the next one begins. Continuity asks what, if anything, connects them. A stored record, a later recollection, and a system’s ongoing state each pose a different question.',
+    context: 'This is the public question at the centre of Proto-Pineal / UMBRA. The inquiry concerns persistence and change together: what is carried forward, what is transformed, and how a claim of continuity could be examined.',
+    inquiries: ['What has actually persisted between two encounters?', 'How could a claim of continuity be distinguished from its presentation?', 'Which changes preserve a useful relation, and which break it?'],
   },
   {
     id: 'human-synthetic-dynamics',
@@ -31,5 +40,8 @@ export const researchAreas = [
     invitation: 'What happens when we think together?',
     summary: 'The evolving relation between a human operator and a synthetic system.',
     question: 'How does the relation between human and synthetic intelligence shape both interaction and interpretation?',
+    perspective: 'The human operator brings intention, expectations, questions, and interpretation to the encounter. The synthetic system supplies behaviour that can support, resist, or redirect that inquiry.',
+    context: 'Cognis 11 places that relation inside the research frame. A useful investigation can examine the interaction and the operator’s reading of it, while keeping observation separate from the meaning attributed to it.',
+    inquiries: ['How does changing the question change what can be observed?', 'Which expectations does the operator bring to the encounter?', 'How can an interaction remain open to discovery and critical examination?'],
   },
 ] as const;

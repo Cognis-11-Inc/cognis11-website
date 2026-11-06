@@ -26,7 +26,7 @@ test('native offline rendering contains low bass, stereo space, and a decaying s
     URL.revokeObjectURL(url);
     const render = async (seconds: number, withSnare: boolean, withPlan: boolean) => {
       const context = new OfflineAudioContext(2, Math.ceil(seconds * 22050), 22050);
-      const master = context.createGain(); master.gain.value = score.sonicTheme.defaultVolume * .45;
+      const master = context.createGain(); master.gain.value = score.sonicTheme.defaultVolume * score.sonicTheme.masterGainScale;
       master.connect(context.destination);
       const space = score.createSoundscape(context, master, 0);
       if (withPlan) for (const event of score.scorePlan) if (event.beat * score.beatSeconds < seconds) score.scheduleScoreEvent(space, event, event.beat * score.beatSeconds);

@@ -5,11 +5,13 @@ Verified November 5, 2026 (America/Toronto), after the Operator explicitly autho
 - Live: **https://cognis11.xyz/** and **https://www.cognis11.xyz/**
 - Existing Cloudflare Workers Static Assets app: `tiny-scene-763b`.
 - Public website source: **https://github.com/Cognis-11-Inc/cognis11-website**.
-- Deployed version: **`a248790b-473c-48f4-a760-49a13f1fd15f`**.
-- Previous versions retained: `1acd1cda-dc12-400d-9445-36b940f125eb` and `204063d8-d7ad-4512-bc02-ac20a012966d`.
-- Current bundle: 17 static files. This update changed nine assets and reused eight: longer score, sparse bass/snare, diffused reverb, discoveries, and confirmed consulting terms.
+- Deployed version: **`514cfb5a-e2a5-4600-b58b-b619b306f4d1`**.
+- Previous deployment retained: `450b862c-e371-4ff8-bbbb-878ee39bc825`, the separately uploaded About revision observed during this work. Earlier versions remain recorded in the delivery history.
+- Current bundle: **20 static files**. Twelve changed assets uploaded and eight reused, including the full v8.1 PDF/reader, publication library/ORCID, expanded pages, project entries, and raised audio.
 
-HTTPS checks returned **200** for all five main routes on both hostnames. Discovery content, consulting terms, and canonicals matched; root-page JS/CSS bytes matched local output. Unknown routes returned branded **404** with `noindex`. Desktop Chromium and Pixel 7 emulation exercised the deployed intro, discoveries and signal 11, the scheduled bass-driven visual response, Consulting navigation with persistent audio, pricing/clock wording, and mute. Both used one running audio context across navigation, then suspended it on mute, with zero page exceptions and no horizontal overflow. These focused public checks are separate from the full local suite. Social-card bytes were verified in the preceding delivery and the asset is unchanged.
+HTTPS checks returned **200** for all five main routes and the new v8.1 reader on both hostnames. ORCID, publications, project entries, About additions, and expanded reading sections matched. All referenced JS/CSS bytes matched the local build. The PDF returned `application/pdf` on both domains with the exact original SHA-256 recorded in [Publication Sources](./PUBLICATION-SOURCES.md).
+
+Separate live desktop Chromium and Pixel 7 checks opened the reader from Home, inspected the Cindra About sections, and exercised sound across navigation. They observed the raised master gain, one persistent context, mute/suspend, no horizontal overflow, and zero page exceptions. Earlier delivery records retain branded-404, discovery, and unchanged social-card checks. These focused public checks are distinct from the full local suite.
 
 No DNS, registrar, MX, SPF, or mail-routing change was needed. Contact uses a `mailto:` link; email delivery was not tested. Both domains serve directly with the root domain canonical. No hostname redirect was added.
 
@@ -17,7 +19,7 @@ No DNS, registrar, MX, SPF, or mail-routing change was needed. Contact uses a `m
 
 Validate locally, then run `ASTRO_TELEMETRY_DISABLED=1 npm run package`. This restores root-domain output and regenerates the ignored `release/cognis11-cloudflare.zip`, with `index.html` at the archive root. Previous ZIPs are preserved with `milestone001` and `milestone002` suffixes.
 
-The current ZIP has 17 files, 132655 bytes, and SHA-256 `79fe8a20f9a1e5bf2eeb1c454185ddc92ee1f5291640fd3a3ef4987027ca9719`. Repackaging may change ZIP timestamps and its checksum. The full listening WAV remains a local artifact outside the website upload.
+The current ZIP has **20 files, 708178 bytes**, and SHA-256 `47e944f4673cb043a2a5ece84c3af8974d24ac702e6ff1c6d2e20c5c6f68a0d8`. It was verified byte-for-byte against `dist/` before the same assets were uploaded through the authenticated CLI. Repackaging may change ZIP timestamps and checksum. The full listening WAV remains local, outside the website upload.
 
 The authenticated CLI upload used an ignored `.local-notes/cloudflare-assets.jsonc`, matching the existing app's routing:
 
@@ -53,7 +55,7 @@ The requested [setup prompt](https://developers.cloudflare.com/agent-setup/promp
 
 The running session published with the authenticated CLI. Restart Codex to load the newly configured MCP tools. No token was added to source or requested in chat. The optional beta `cf` CLI was not installed.
 
-References: [static assets](https://developers.cloudflare.com/workers/static-assets/get-started/), [Wrangler commands](https://developers.cloudflare.com/workers/wrangler/commands/workers/). See [Milestone 003](./MILESTONE-003.md) for current validation; [Milestone 002](./MILESTONE-002.md) retains the preceding source tree and delivery record.
+References: [static assets](https://developers.cloudflare.com/workers/static-assets/get-started/), [Wrangler commands](https://developers.cloudflare.com/workers/wrangler/commands/workers/). See [Milestone 004](./MILESTONE-004.md) for current validation. Older milestone records retain the previous source trees and delivery results.
 
 ## Historical record: initial dashboard connection
 

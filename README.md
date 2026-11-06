@@ -1,6 +1,6 @@
 # Cognis 11 Inc. website
 
-The official Astro static website for **Human Operator × Synthetic Intelligence**. Live at **https://cognis11.xyz** on Cloudflare Workers Static Assets. Public website source: **https://github.com/Cognis-11-Inc/cognis11-website**. See [the hosting record](docs/HOSTING.md) and [current delivery record](docs/MILESTONE-003.md) for verification and remaining decisions.
+The official Astro static website for **Human Operator × Synthetic Intelligence**. Live at **https://cognis11.xyz** on Cloudflare Workers Static Assets. Public website source: **https://github.com/Cognis-11-Inc/cognis11-website**. See [the hosting record](docs/HOSTING.md) and [current delivery record](docs/MILESTONE-004.md) for verification and remaining decisions.
 
 The current visual revision follows the Cognis 11 Aesthetic Rule Book: abyss black, reflective obsidian, cyan/electric-blue signal, the existing candidate corporate mark, and depth revealed through interaction. See `docs/DESIGN-REVISION-001.md` for source provenance and the response to the Operator’s review.
 
@@ -37,6 +37,8 @@ CHROMIUM_PATH=/usr/bin/chromium ASTRO_TELEMETRY_DISABLED=1 npm run test:e2e
 On a machine without a system Chromium, install Playwright’s browser with `npx playwright install chromium`, then run `npm run test:e2e`. That installation command was not needed or executed for this milestone. Build before running browser checks: the tests exercise the emitted static files, not the dev server. The configuration starts and stops its own loopback-only preview server. Test screenshots and failure traces are written to ignored `test-results/`.
 
 The suite covers intro/session/fallback behavior, offline intro playback, native interactions without JavaScript, keyboard/touch/pointer access, metadata and links, external-request absence, and overflow from 320 to 1920 CSS pixels. Audio checks observe the real Web Audio graph and output signal, stereo carriers, mute/resume, navigation persistence, and reduced-motion behavior. Axe checks WCAG A/AA rules on all five pages, the introduction, the open instrument, and an open research question in Chromium; they do not replace manual assistive-technology review. GitHub Actions separately runs dependency installation, type checking, and a static build.
+
+The test-owned preview uses port **4327**, independently of the normal development server on 4321. Set `COGNIS_TEST_PORT` to another free port if necessary. Expanded reading-path checks cover the local v8.1 reader/PDF, author attribution, practical answers, and email outlines without JavaScript. They do not send email or certify accessibility of the PDF's contents.
 
 Astro 7 can automatically background a server when an agent starts it. The Playwright preview uses `--ignore-lock` to retain process ownership. To stop an ordinary background server:
 
@@ -78,6 +80,12 @@ Music, interaction cues, and restrained visual breath/bass responses share a 66 
 
 The optional homepage field changes through deliberate exploration. Nine fragments can be recovered through the field, uncommon/rare draws, research questions, repeated contact, a return visit, and signal 11. A session-local archive remembers fragments; unavailable storage does not prevent exploration. Essential company information remains reachable through normal navigation. See [discovery notes](docs/DISCOVERIES.md) for the authored rules, odds, accessibility, and review instructions.
 
+## Published research and reading paths
+
+The homepage presents the flagship manuscript, ORCID, four public projects, and the consulting entry point. Research includes a DOI-linked publication library through v8.1, public project evidence, developed research directions, and questions for further reading. About preserves the Operator's voice and the philosophy/engineering sections, with public records linked to their sources. Consulting expands inquiry examples, process, and practical answers while retaining the confirmed terms. Contact supplies three optional email outlines; all work through the visitor's email app without a backend.
+
+The original **117-page v8.1 PDF** is readable at `/research/umbra-v8-1/` and downloadable from `/research/proto-pineal-v8.1.pdf`. It was retrieved unchanged from the public Zenodo record with the author's authorization. ORCID `0009-0009-0353-5821`, the DOI metadata, and selected record-abstract excerpts were verified using ORCID, DataCite, and the Zenodo record. No private working manuscript was substituted for the published file.
+
 ## Static hosting preparation
 
 `astro.config.mjs` uses `output: 'static'`, directory-style routes, and `site: 'https://cognis11.xyz'`. That URL supplies canonical and social metadata; it does not configure the domain. `sitemap.xml` and `robots.txt` are rendered at build time without extra integrations.
@@ -105,8 +113,8 @@ Reference documentation: [Astro installation requirements](https://docs.astro.bu
 
 ## Content boundary
 
-The founder's approved public identity is **Guillaume Heinerth — Founder and Operator**, reachable at **founder@cognis11.xyz**. Proto-Pineal / UMBRA is named as the proprietary flagship; no private source, mechanisms, results, or research documents belong in this repository. Its public description is deliberately brief.
+The founder's approved public identity is **Guillaume Heinerth — Founder and Operator**, reachable at **founder@cognis11.xyz**. Proto-Pineal / UMBRA is the proprietary flagship. Published manuscripts and short attributed excerpts through v8.1 are public by the Operator's direction; private source, unpublished mechanisms/results, and private research documents remain outside this repository.
 
-HOUND and Digital Bee Hive are supporting public experiments with links to their public evidence/design and explicit limits. Their original experiments were not rerun as website tests.
+HOUND, Digital Bee Hive, Möbius Automata, and Phalanx have public source/evidence links and explicit scope. Their original experiments were not rerun as website tests. About identifies Zeitgeist as private and links THEUS to its documented Phalanx integration.
 
 Consulting publishes the Operator's confirmed offer: one free evaluation, then CAD $100/hour, up to three hours per week per client, or a separately defined contract. Paid document review and client-requested interruptions during the agreed work count toward that cap. Total client capacity remains undecided; scope and availability are confirmed individually. No clients, testimonials, credentials, speed guarantees, or company history have been invented.

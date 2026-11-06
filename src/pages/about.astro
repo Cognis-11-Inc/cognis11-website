@@ -2,11 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeading from '../components/PageHeading.astro';
 import Arrow from '../components/Arrow.astro';
+import ReadingGrid from '../components/ReadingGrid.astro';
+import { practicePrinciples } from '../lib/editorial';
 import { site, sitePath } from '../lib/site';
+import { researcher, manuscriptPath } from '../lib/publications';
 ---
 
-<BaseLayout title="About" description="Meet Guillaume Heinerth, Founder and Operator of Cognis 11 Inc., a Canadian research company bringing engineering and authored creative practice together.">
-  <PageHeading number="03" label="About Cognis 11" title="Human Operator × Synthetic Intelligence." description="Cognis 11 Inc. is a Canadian research company exploring synthetic intelligence, computational architectures, continuity, and human–synthetic dynamics." />
+<BaseLayout title="About" description="Meet Guillaume Heinerth, Founder and Operator of Cognis 11 Inc., a Canadian research company bringing engineering and authored creative practice together. Learn about the operator-first approach, research philosophy, and engineering principles that shape this work.">
+  <PageHeading number="03" label="About Cognis 11" title="Human Operator × Synthetic Intelligence." description="Cognis 11 Inc. is a Canadian research company exploring synthetic intelligence, computational architectures, continuity, and human–synthetic dynamics. This page explains who we are, how we work, and what we invite you to examine." />
   <div class="shell page-body">
     <section class="founder-section editorial-block" aria-labelledby="founder-heading">
       <p class="eyebrow">The human operator</p>
@@ -21,6 +24,7 @@ import { site, sitePath } from '../lib/site';
         <p>He calls himself a “living paradox engine.” Precision and poetry, intensity and care: creative contradiction has a place in the work.</p>
         <p>His ambition is to awaken curiosity and independent thought: to make people want to question, investigate, and create.</p>
         <blockquote class="founder-motto"><p>“Become an expert generalist, not a specialist.”</p><cite>Guillaume Heinerth’s guiding motto</cite></blockquote>
+        <div class="founder-record-links"><a class="text-link" href={researcher.orcidUrl}>ORCID · {researcher.orcid}<Arrow diagonal /></a><a class="text-link" href={sitePath(manuscriptPath)}>Read v8.1<Arrow diagonal /></a><a class="text-link" href={`${sitePath('research/')}#publications`}>The publication record<Arrow diagonal /></a></div>
         <a class="text-link" href={sitePath('contact/')}>Write to the founder <Arrow diagonal /></a>
       </div>
     </section>
@@ -35,6 +39,47 @@ import { site, sitePath } from '../lib/site';
         <p>Public research artifacts give a reader something concrete to examine: source, documented procedures, and an account of the limits. Experimental work should carry that context with it.</p>
         <a class="text-link" href={`${sitePath('research/')}#public-work`}>Explore the public work <Arrow /></a>
       </div>
+    </section>
+    <section class="editorial-block philosophy-section" aria-labelledby="philosophy-heading">
+      <p class="eyebrow">Research philosophy</p>
+      <div>
+        <h2 id="philosophy-heading">Four categories of claim.</h2>
+        <p>We distinguish what we can demonstrate from what we are still investigating. Every public statement falls into one of these categories:</p>
+        <ul class="philosophy-list">
+          <li><span class="philosophy-label">Demonstrated</span> Supported by artifacts and reproducible results.</li>
+          <li><span class="philosophy-label">Experimental</span> Under investigation, with limitations acknowledged.</li>
+          <li><span class="philosophy-label">Theoretical</span> Hypotheses requiring validation.</li>
+          <li><span class="philosophy-label">Aspirational</span> Directions we hope to explore, not accomplishments.</li>
+        </ul>
+        <blockquote class="philosophy-principle"><p>We do not ask you to believe. We invite you to examine.</p></blockquote>
+      </div>
+    </section>
+    <section class="editorial-block engineering-section" aria-labelledby="engineering-heading">
+      <p class="eyebrow">Engineering approach</p>
+      <div>
+        <h2 id="engineering-heading">Built to run on its own.</h2>
+        <p>Our working preference leans toward systems that can stand independently: local autonomy, offline-first operation, transparent experimentation, and clear operator control. These are directions we pursue, not guarantees already achieved in every project.</p>
+        <p>We build instruments that do not require a cloud dependency to function. We document procedures so the reader can follow them. We leave room for the human operator to verify, question, and redirect at any point.</p>
+      </div>
+    </section>
+    <section class="editorial-block" aria-labelledby="proof-heading">
+      <p class="eyebrow">What we solve</p>
+      <div>
+        <h2 id="proof-heading">Proof, not promises.</h2>
+        <p>The work spans research instruments, simulations, and toolchains. Follow the public source and records where they are available; private prototypes are identified as such.</p>
+        <ul class="project-list">
+          <li><span class="project-label">Phalanx</span> Terrain-aware autonomous combat simulation and game-AI testbed. Its public README reports 97.9% masked action agreement for an imitation policy; that metric measures imitation, not superior combat performance. <a href="https://github.com/Fiendstar77/phalanx">Inspect the source and experiment records</a>.</li>
+          <li><span class="project-label">Möbius Automata</span> A deterministic lattice of digital cells, with a headless runner, snapshot viewer, and documented ledger checks. <a href={`${sitePath('research/')}#moebius-automata`}>Explore the public M0 implementation</a>.</li>
+          <li><span class="project-label">Zeitgeist</span> A private simulation-game prototype exploring colony, city, and empire systems, with Rust/Bevy and a Common Lisp/Python toolchain. Its implementation is not publicly released.</li>
+          <li><span class="project-label">THEUS</span> Rules architecture within the simulation work. Phalanx documents its integration with combat, skill practice, and campaign systems. <a href="https://github.com/Fiendstar77/phalanx/blob/main/docs/design/shared-rules.md">Read the public integration notes</a>.</li>
+        </ul>
+        <p>HOUND and Digital Bee Hive provide further public entry points into network observation and collective-agent design. The <a href={`${sitePath('research/')}#public-work`}>Research page</a> brings these records together with their scope and limits.</p>
+      </div>
+    </section>
+    <ReadingGrid id="working-principles" label="A way of working" title="Curiosity needs something to push against." intro="The generalist's appetite becomes useful when a connection turns into a question, and the question turns into something that can be made or examined." items={practicePrinciples} />
+    <section class="editorial-block" aria-labelledby="independence-heading">
+      <p class="eyebrow">Independence &amp; attention</p>
+      <div><h2 id="independence-heading">Room to build the difficult thing.</h2><p>Proto-Pineal / UMBRA is the company's proprietary flagship. The public projects offer inspectable points of contact with its broader interests; the flagship's underlying work remains private.</p><p>Consulting supports this independent practice. A bounded weekly commitment leaves time for the company's own technology, while inviting focused technical questions from people building something of their own. One free evaluation to see if we're a fit — no obligation after that.</p><a class="text-link" href={sitePath('consulting/')}>How consulting fits the practice <Arrow diagonal /></a></div>
     </section>
   </div>
 </BaseLayout>

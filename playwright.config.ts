@@ -1,7 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const base = (process.env.ASTRO_BASE_PATH || '/').replace(/\/?$/, '/');
-const baseURL = `http://127.0.0.1:4321${base}`;
+const testPort = process.env.COGNIS_TEST_PORT || '4327';
+const baseURL = `http://127.0.0.1:${testPort}${base}`;
 
 export default defineConfig({
   testDir: './tests',
@@ -24,7 +25,7 @@ export default defineConfig({
   webServer: {
     // --ignore-lock also keeps Astro 7 in the foreground under agent tooling,
     // so Playwright owns and tears down its preview process.
-    command: 'npm run preview -- --host 127.0.0.1 --port 4321 --ignore-lock',
+    command: `npm run preview -- --host 127.0.0.1 --port ${testPort} --ignore-lock`,
     url: baseURL,
     reuseExistingServer: false,
     timeout: 30_000,

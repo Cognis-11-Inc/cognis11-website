@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeading from '../components/PageHeading.astro';
 import Arrow from '../components/Arrow.astro';
+import ReadingGrid from '../components/ReadingGrid.astro';
+import ReadingQuestions from '../components/ReadingQuestions.astro';
+import { consultingInquiries, consultingQuestions } from '../lib/editorial';
 import { sitePath } from '../lib/site';
 ---
 
@@ -12,6 +15,7 @@ import { sitePath } from '../lib/site';
       <p class="eyebrow">Consulting inquiries</p>
       <div><h2 id="consulting-heading">Bring a specific problem.</h2><p>Begin with a problem that deserves close examination, a mechanism you want to understand, or an assumption you are prepared to question.</p><p>Tell the founder what you are building, what is blocking you, what you have already tried, and what a useful result would look like. Start with one free evaluation, then agree on the work together.</p><h3>Human judgment. AI-assisted work.</h3><p>AI tools are part of the working method: exploration, drafting, and prototyping alongside human review. The engagement is with the operator who frames the problem, examines the output, and makes the technical decisions.</p></div>
     </section>
+    <ReadingGrid id="inquiry-areas" label="Where to begin" title="Choose a problem with edges." intro="These are examples of questions to bring to an evaluation. The engagement takes its shape from your problem, the intended result, and the available time." items={consultingInquiries} />
     <section class="consulting-offer" aria-labelledby="offer-heading">
       <div class="offer-intro"><p class="eyebrow">An independent practice</p><h2 id="offer-heading">A clear arrangement.</h2><p>Consulting supports an independent research practice. The weekly limit reserves time for developing Cognis 11’s own technology.</p></div>
       <div class="offer-terms">
@@ -22,6 +26,15 @@ import { sitePath } from '../lib/site';
         <a class="button button-secondary" href={sitePath('contact/')}>Request a free evaluation <Arrow diagonal /></a>
       </div>
     </section>
+    <section class="engagement-path" aria-labelledby="engagement-heading">
+      <div class="research-section-heading"><p class="eyebrow">From inquiry to work</p><h2 id="engagement-heading">A focused conversation. A defined next step.</h2></div>
+      <ol>
+        <li><h3>Start with the evaluation.</h3><p>Send the problem, context, and intended outcome. Use the free evaluation to establish the question and whether there is a useful fit.</p></li>
+        <li><h3>Agree the work.</h3><p>Define the result you need, what material is relevant, and the time budget. Choose the hourly arrangement or discuss a separate contract.</p></li>
+        <li><h3>Protect the attention.</h3><p>Bring the documentation together. Keep follow-up questions focused. Review the outcome against the question that started the engagement.</p></li>
+      </ol>
+    </section>
+    <ReadingQuestions id="consulting-questions" title="Know the arrangement before you begin." items={consultingQuestions} />
     <a class="text-link" href={sitePath('research/')}>Explore the research direction <Arrow /></a>
   </div>
 </BaseLayout>

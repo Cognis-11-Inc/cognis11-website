@@ -84,6 +84,20 @@
 .contact-context > p { color: var(--muted); font-size: .95rem; }
 .founder-role { color: var(--accent) !important; font: .65rem/1.7 var(--font-mono); text-transform: uppercase; letter-spacing: .1em; }
 .founder-section h2 { font-size: clamp(2.1rem, 4.5vw, 4rem); line-height: 1.12; letter-spacing: -.045em; max-width: none; }
+/* Proof / project list */
+.project-list { list-style: none; padding: 0; margin: 0; }
+.project-list li { padding: 1rem 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .95rem; line-height: 1.7; }
+.project-list li:last-child { border-bottom: none; }
+.project-label { color: var(--accent); font: .65rem/1.7 var(--font-mono); text-transform: uppercase; letter-spacing: .1em; margin-right: .8rem; }
+/* Philosophy section */
+.philosophy-list { list-style: none; padding: 0; margin: 0; }
+.philosophy-list li { padding: 1rem 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .95rem; line-height: 1.7; }
+.philosophy-list li:last-child { border-bottom: none; }
+.philosophy-label { color: var(--accent); font: .65rem/1.7 var(--font-mono); text-transform: uppercase; letter-spacing: .1em; margin-right: .8rem; }
+.philosophy-principle { margin: 2.5rem 0; padding-left: 1.4rem; border-left: 1px solid var(--accent-dim); }
+.philosophy-principle > p { color: #bdfbff !important; font-size: clamp(1.25rem, 2.5vw, 1.8rem) !important; letter-spacing: -.025em; line-height: 1.4; }
+/* Engineering section */
+.engineering-section > div > p:nth-of-type(2) { color: var(--muted); font-size: .95rem; max-width: 61ch; }
 .founder-section .text-link { border-bottom: 1px solid var(--line); }
 .founder-motto { margin: 2rem 0; padding-left: 1.4rem; border-left: 1px solid var(--accent-dim); }
 .founder-motto > p { color: #bdfbff !important; font-size: clamp(1.25rem, 2.5vw, 1.8rem) !important; letter-spacing: -.025em; line-height: 1.4; }
@@ -174,5 +188,75 @@
   .page-heading .section-label { margin-bottom: 2rem; }
   .page-heading h1 { font-size: clamp(2.8rem, 11vw, 4rem); }
   .page-body { padding-bottom: 3.5rem; }
-  .research-topic, .editorial-block { grid-template-columns: 1fr; gap: 1rem; padding-block: 2rem; }
+  .philosophy-section, .engineering-section { padding-top: 2rem; padding-bottom: 3rem; }
+  .philosophy-list li { padding: .8rem 0; font-size: .9rem; line-height: 1.6; }
+  .philosophy-label { margin-right: .5rem; }
+  .philosophy-principle > p { font-size: clamp(1.1rem, 2.2vw, 1.5rem) !important; }
 }
+
+/* Reading paths added as the foundation grows into a complete public presence. */
+.page-index { display: flex; flex-wrap: wrap; gap: .5rem 2rem; border-top: 1px solid var(--line); padding-block: .6rem 1.8rem; }
+.page-index > a { display: inline-flex; align-items: center; min-height: 44px; font: .65rem/1.6 var(--font-mono); text-decoration: none; color: var(--muted); }
+.page-index > a:hover { color: var(--accent); }
+.research-topic .direction-question { color: #bdfbff; font-size: 1.15rem; margin-bottom: 1.3rem; }
+.research-topic p + p { margin-top: 1rem; }
+.direction-inquiry { margin-top: 1.6rem; max-width: 65ch; border-left: 1px solid var(--accent-dim); background: var(--surface); }
+.direction-inquiry summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 52px; padding: 1rem 1.2rem; list-style: none; cursor: pointer; font-size: .82rem; }
+.direction-inquiry summary::-webkit-details-marker { display: none; }
+.direction-inquiry summary > span { color: var(--accent); font-size: 1.2rem; }
+.direction-inquiry[open] summary { color: var(--accent); }
+.direction-inquiry[open] summary > span { transform: rotate(45deg); }
+.direction-inquiry ul { margin: 0; padding: .2rem 2rem 1.3rem 2.3rem; color: var(--muted); font-size: .9rem; line-height: 1.8; }
+.direction-inquiry li + li { margin-top: .7rem; }
+.editorial-closing { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+.editorial-closing > p { color: #bdfbff; font-size: 1.2rem; margin: 0; }
+.engagement-path { padding-block: 2.5rem; }
+.engagement-path ol { list-style: none; counter-reset: engagement; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.engagement-path li { counter-increment: engagement; border-top: 1px solid var(--line); padding-top: 1.5rem; }
+.engagement-path li::before { content: '0' counter(engagement); display: block; color: var(--accent); font: .65rem var(--font-mono); margin-bottom: 1.5rem; }
+.engagement-path h3 { font-size: 1.3rem; line-height: 1.3; letter-spacing: -.03em; }
+.engagement-path li > p { color: var(--muted); font-size: .9rem; margin: 0; }
+.inquiry-routes { padding-block: 2rem 3rem; }
+.inquiry-route-grid, .lab-entry-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.inquiry-route-grid > article { display: flex; flex-direction: column; padding: 1.6rem; border: 1px solid var(--line); background: linear-gradient(135deg, var(--surface-raised), transparent); }
+.inquiry-route-grid h3 { font-size: 1.5rem; line-height: 1.2; letter-spacing: -.035em; }
+.inquiry-route-grid p { color: var(--muted); font-size: .9rem; }
+.inquiry-route-grid .text-link { margin-top: auto; padding-top: .8rem; font-size: .78rem; gap: .8rem; }
+.lab-entry-section { padding-top: 3.5rem; }
+.lab-entry-section .section-intro { margin-bottom: 2rem; }
+.lab-entry-grid > article { display: flex; flex-direction: column; border-top: 1px solid var(--accent-dim); padding: 1.8rem 1.4rem; background: linear-gradient(130deg, var(--surface-raised), var(--bg)); }
+.lab-entry-grid .eyebrow { color: var(--accent); font-size: .56rem; min-height: 2.6em; margin-bottom: 1.2rem; }
+.lab-entry-grid h3 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); line-height: 1.2; letter-spacing: -.035em; }
+.lab-entry-grid p:not(.eyebrow) { font-size: .85rem; color: var(--muted); }
+.lab-entry-grid .text-link { margin-top: auto; padding-top: .7rem; font-size: .78rem; gap: 1rem; }
+.lab-entry-grid .lab-consulting-entry { border-top-color: #bdfbff; }
+.question-revelation > .question-context { font-size: .9rem; }
+@media (max-width: 900px) {
+  .lab-entry-grid, .inquiry-route-grid { grid-template-columns: 1fr 1fr; }
+  .lab-entry-grid > article:last-child, .inquiry-route-grid > article:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 680px) {
+  .page-index { gap: .3rem 1.4rem; padding-bottom: 1rem; }
+  .engagement-path ol, .inquiry-route-grid, .lab-entry-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .lab-entry-grid > article:last-child, .inquiry-route-grid > article:last-child { grid-column: auto; }
+  .lab-entry-section { padding-top: 2.5rem; }
+  .lab-entry-grid .eyebrow { min-height: 0; }
+  .lab-entry-grid > article, .inquiry-route-grid > article { padding: 1.5rem; }
+  .engagement-path { padding-block: 1.5rem 2.5rem; }
+  .engagement-path li::before { margin-bottom: 1rem; }
+}
+
+.manuscript-entry { display: grid; grid-template-columns: 1.5fr 1fr; align-items: end; gap: 3rem; padding-block: 3rem; border-bottom: 1px solid var(--line); }
+.manuscript-entry .eyebrow { color: var(--accent); font-size: .58rem; }
+.manuscript-entry h2 { font-size: 1.5rem; letter-spacing: -.03em; }
+.manuscript-entry blockquote { margin: 1.4rem 0 0; padding-left: 1.4rem; border-left: 1px solid var(--accent-dim); }
+.manuscript-entry blockquote p { color: #bdfbff; font-size: clamp(1.15rem, 2vw, 1.65rem); line-height: 1.5; max-width: 40ch; }
+.manuscript-entry cite { font: normal .6rem/1.8 var(--font-mono); color: var(--muted); }
+.manuscript-entry-links, .founder-record-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+.manuscript-entry-links { flex-direction: column; align-items: flex-start; }
+.manuscript-entry-links .text-link, .founder-record-links .text-link { font-size: .75rem; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.founder-record-links { margin-bottom: 1.5rem; }
+.lab-entry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 900px) { .lab-entry-grid > article:last-child { grid-column: auto; } }
+@media (max-width: 680px) { .manuscript-entry { grid-template-columns: 1fr; gap: 1.5rem; padding-block: 2rem; } .lab-entry-grid { grid-template-columns: 1fr; } }
+@media (min-width: 681px) { .lab-entry-grid .lab-consulting-entry { grid-column: 1 / -1; } }

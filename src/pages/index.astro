@@ -5,6 +5,8 @@ import ContactInstrument from '../components/ContactInstrument.astro';
 import DiscoveryField from '../components/DiscoveryField.astro';
 import { sitePath } from '../lib/site';
 import { researchAreas } from '../lib/research';
+import { publicArtifacts } from '../lib/artifacts';
+import { researcher, manuscriptExcerpt, manuscriptPath } from '../lib/publications';
 ---
 
 <BaseLayout title="Human Operator × Synthetic Intelligence" intro>
@@ -32,7 +34,17 @@ import { researchAreas } from '../lib/research';
   <section class="flagship-band shell" aria-labelledby="home-flagship-heading">
     <p class="eyebrow">Flagship · Proprietary research</p>
     <div><h2 id="home-flagship-heading">Proto-Pineal / UMBRA</h2><p>Continuity. Human Operator × Synthetic Intelligence.</p></div>
-    <a class="text-link" href={`${sitePath('research/')}#flagship`}>The research direction <Arrow diagonal /></a>
+    <a class="text-link" href={sitePath(manuscriptPath)}>Read v8.1 <Arrow diagonal /></a>
+  </section>
+
+  <section class="manuscript-entry shell" aria-labelledby="manuscript-entry-heading"><div><p class="eyebrow">From the published research · v8.1</p><h2 id="manuscript-entry-heading">An invitation to inspect.</h2><blockquote><p>“{manuscriptExcerpt}”</p><cite>Guillaume Heinerth · v8.1 record abstract</cite></blockquote></div><div class="manuscript-entry-links"><a class="text-link" href={`${sitePath('research/')}#publications`}>Explore the publication record<Arrow diagonal /></a><a class="text-link" href={researcher.orcidUrl}>ORCID · {researcher.orcid}<Arrow diagonal /></a></div></section>
+
+  <section class="lab-entry-section shell" aria-labelledby="lab-entry-heading">
+    <div class="section-intro"><p class="section-label eyebrow">Inside Cognis 11</p><div><h2 id="lab-entry-heading">A question should lead somewhere.</h2><p>Inspect a public experiment, follow a research direction, or bring a technical problem into the conversation.</p></div></div>
+    <div class="lab-entry-grid">
+      {publicArtifacts.map((artifact) => <article><p class="eyebrow">{artifact.status}</p><h3>{artifact.name}</h3><p>{artifact.description}</p><a class="text-link" href={`${sitePath('research/')}#${artifact.id}`}>Explore {artifact.name}<Arrow diagonal /></a></article>)}
+      <article class="lab-consulting-entry"><p class="eyebrow">Focused consulting</p><h3>A problem worth examining.</h3><p>Start with one free evaluation. Then CAD $100/hour, up to three hours per week per client, or a separately defined contract.</p><a class="text-link" href={sitePath('consulting/')}>Bring your question<Arrow diagonal /></a></article>
+    </div>
   </section>
 
   <section class="research-section shell" aria-labelledby="research-directions">
@@ -44,7 +56,7 @@ import { researchAreas } from '../lib/research';
       {researchAreas.map((area) => (
         <details class="research-question" name="research-question">
           <summary><span class="research-number eyebrow">{area.number}</span><span class="question-title">{area.invitation}</span><span class="question-toggle" aria-hidden="true">+</span></summary>
-          <div class="question-revelation"><p class="eyebrow">{area.title}</p><p>{area.question}</p><a class="text-link" href={`${sitePath('research/')}#${area.id}`}>Follow this question <Arrow diagonal /></a></div>
+          <div class="question-revelation"><p class="eyebrow">{area.title}</p><p>{area.question}</p><p class="question-context">{area.perspective}</p><a class="text-link" href={`${sitePath('research/')}#${area.id}`}>Follow this question <Arrow diagonal /></a></div>
         </details>
       ))}
     </div>

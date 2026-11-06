@@ -20,7 +20,7 @@ try {
     const duration = score.cycleSeconds + score.sonicTheme.reverbSeconds;
     const context = new OfflineAudioContext(2, Math.ceil(duration * sampleRate), sampleRate);
     const master = context.createGain(); master.gain.value = 0;
-    master.gain.setTargetAtTime(score.sonicTheme.defaultVolume * .45, 0, 1.4);
+    master.gain.setTargetAtTime(score.sonicTheme.defaultVolume * score.sonicTheme.masterGainScale, 0, 1.4);
     master.gain.setTargetAtTime(0, score.cycleSeconds - 1, 1.4);
     const limiter = context.createDynamicsCompressor();
     limiter.threshold.value = -18; limiter.knee.value = 15; limiter.ratio.value = 5; limiter.attack.value = .015; limiter.release.value = .5;
@@ -44,7 +44,7 @@ try {
     for (let i = 0; i < bytes.length; i += 16384) chunks.push(String.fromCharCode(...bytes.subarray(i, i + 16384)));
     return { wav: btoa(chunks.join('')), duration, peak, rms: Math.sqrt(energy / audio.length / 2), sampleRate, bars: score.sonicTheme.bars };
   }, javascript);
-  const output = new URL('../release/cognis11-ambient-v2-preview.wav', import.meta.url);
+  const output = new URL('../release/cognis11-ambient-v3-preview.wav', import.meta.url);
   const wav = Buffer.from(result.wav, 'base64');
   if (wav.toString('ascii', 0, 4) !== 'RIFF' || result.peak >= 1) throw new Error('Audio preview validation failed.');
   await mkdir(new URL('../release/', import.meta.url), { recursive: true });

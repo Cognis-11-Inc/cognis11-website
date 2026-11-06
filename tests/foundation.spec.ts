@@ -1,5 +1,11 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { publications, furtherRecords, researcher } from '../src/lib/publications';
+const approvedResearchLinks = new Set([
+  researcher.orcidUrl,
+  ...publications.map((publication) => publication.record),
+  ...[...publications, ...furtherRecords].map((publication) => `https://doi.org/${publication.doi}`),
+]);
 
 test('introduction finishes, opens the homepage, and stays dismissed for the session', async ({ page }) => {
   await page.goto('./');
@@ -126,8 +132,7 @@ test('all routes are accessible, responsive, self-contained, and internally link
       if (target.origin !== new URL(baseURL!).origin) {
         // Public source links are verified during editorial review, not fetched
         // by this local browser suite. They must not load as page dependencies.
-        expect(target.origin).toBe('https://github.com');
-        expect(target.pathname).toMatch(/^\/Cognis-11-Inc\//);
+        expect((target.origin === 'https://github.com' && /^\/(Cognis-11-Inc\/|Fiendstar77\/phalanx(?:\/|$))/.test(target.pathname)) || approvedResearchLinks.has(target.href), `Unreviewed external link: ${href}`).toBe(true);
         continue;
       }
       expect(target.origin).toBe(new URL(baseURL!).origin);
